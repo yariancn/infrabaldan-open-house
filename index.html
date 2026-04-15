@@ -1,92 +1,353 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free InfraBaldan 3.0 Open House The Woodlands TX - May 2, 2026. Try the revolutionary infrared metabolism bike that activates your metabolism and helps burn fat naturally. Limited spots!">
-    <title>InfraBaldan 3.0 Open House The Woodlands | Free Infrared Bike Trial - May 2, 2026</title>
+    <title>PredictaCore Titán - Clinical Master</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; margin:0; padding:0; background:#f8f9fa; color:#222; line-height:1.7; }
-        .header { background:#003087; padding:20px 0; text-align:center; }
-        .hero { 
-            background: linear-gradient(rgba(0,48,135,0.45), rgba(0,48,135,0.45)), url('./foto2.JPG') center/cover; 
-            color:white; text-align:center; padding:200px 20px 140px; 
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; color: #1e293b; overflow-x: hidden; }
+        .predicta-card { background: white; border-radius: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.04); border: 1px solid #f1f5f9; }
+        .titan-btn { background: #1e293b; color: white; transition: all 0.2s; font-weight: 900; cursor: pointer; border: none; }
+        .titan-btn:hover { background: #334155; transform: translateY(-1px); }
+        .input-titan { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 15px; padding: 12px 16px; width: 100%; outline: none; }
+        
+        /* CAPAS DE NAVEGACIÓN */
+        #modalDetalle { z-index: 100; display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(10px); }
+        .modal-content { background: white; width: 95vw; max-width: 1350px; height: 92vh; margin: 4vh auto; border-radius: 50px; overflow-y: auto; position: relative; }
+
+        /* ESTILOS DE IMPRESIÓN PROFESIONAL */
+        @media print {
+            .no-print, .unit-control, button, input { display: none !important; }
+            body { background: white !important; padding: 0 !important; }
+            #modalDetalle { display: block !important; position: static !important; background: white !important; backdrop-filter: none !important; }
+            .modal-content { width: 100% !important; max-width: none !important; margin: 0 !important; height: auto !important; border: none !important; padding: 20px !important; }
+            .predicta-card { box-shadow: none !important; border: 1px solid #eee !important; page-break-inside: avoid; border-radius: 20px; }
+            canvas { max-width: 100% !important; height: 350px !important; }
         }
-        .btn { 
-            display:inline-block; background:#00BFFF; color:white; padding:20px 55px; 
-            font-size:1.4rem; font-weight:bold; border-radius:50px; text-decoration:none; 
-            box-shadow:0 10px 30px rgba(0,191,255,0.5); transition:0.3s; 
-        }
-        .btn:hover { background:#FF7A00; transform:translateY(-5px); }
-        .section { padding:90px 20px; max-width:1200px; margin:0 auto; }
-        .blue-bg { background:#003087; color:white; }
-        h1 { font-size:3.8rem; margin:0 0 15px; }
-        h2 { font-size:2.7rem; text-align:center; margin-bottom:45px; }
-        img { border-radius:18px; width:100%; height:auto; box-shadow:0 15px 40px rgba(0,0,0,0.18); }
-        .form-container { background:white; padding:55px; border-radius:24px; box-shadow:0 20px 50px rgba(0,0,0,0.15); max-width:680px; margin:0 auto; }
-        input, textarea, select { width:100%; padding:16px; margin:14px 0; border:1px solid #ccc; border-radius:12px; font-size:1.1rem; }
     </style>
 </head>
-<body>
+<body class="antialiased p-4">
 
-    <div class="header">
-        <img src="./logo.jpg" alt="OxyHyperbaric" style="max-height:90px;">
+    <div class="fixed top-6 right-8 z-[110] no-print">
+        <button onclick="toggleUnits(event)" class="bg-blue-600 text-white py-3 px-8 rounded-2xl font-black text-[10px] shadow-xl uppercase tracking-widest border-2 border-white hover:bg-blue-700">
+            MODO: <span id="currentUnitText">MÉTRICO (KG/CM)</span>
+        </button>
     </div>
 
-    <header class="hero">
-        <h1>InfraBaldan 3.0 Open House</h1>
-        <h2>Activate Your Metabolism &amp; Burn Fat Naturally</h2>
-        <p style="font-size:1.8rem; max-width:960px; margin:35px auto;">
-            Free live trial of the patented Italian infrared metabolism bike<br>
-            <strong>Saturday, May 2, 2026 • 9:00 AM – 6:00 PM</strong><br>
-            The Woodlands / Shenandoah, TX
-        </p>
-        <a href="#register" class="btn">Reserve Your FREE Spot Now</a>
+    <header class="flex flex-col items-center mb-10 no-print">
+        <div class="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-2 text-right w-full max-w-7xl">Versión: 15 Abr 2026 - 01:30 PM (Clinical Logic)</div>
+        <img src="logo.jpg" alt="Oxy Hyperbaric" class="h-24 mb-4 object-contain" onerror="this.src='https://via.placeholder.com/400x100?text=OXY+HYPERBARIC';">
+        <h1 class="text-4xl font-black tracking-tighter uppercase italic text-center leading-none">PredictaCore Titán</h1>
+        <div class="h-1.5 w-24 bg-blue-600 mt-3"></div>
     </header>
 
-    <section class="section">
-        <h2>What is InfraBaldan 3.0?</h2>
-        <img src="./foto1.JPG" alt="InfraBaldan infrared bike The Woodlands">
-    </section>
-
-    <section class="section blue-bg">
-        <h2 style="color:white;">How InfraBaldan Helps You</h2>
-        <ul style="max-width:800px; margin:0 auto; font-size:1.35rem; line-height:2.2;">
-            <li>✔ Reactivates aerobic metabolism for natural fat burning</li>
-            <li>✔ Targets stubborn fat in abdomen, legs and glutes</li>
-            <li>✔ Improves circulation and daily energy levels</li>
-            <li>✔ Relaxing 40-minute sessions (no intense workout needed)</li>
-            <li>✔ Suitable for all ages and fitness levels</li>
-        </ul>
-    </section>
-
-    <section class="section">
-        <h2>The Patented Active Wellness System</h2>
-        <img src="./poster.jpg" alt="InfraBaldan Official Poster">
-    </section>
-
-    <section class="section">
-        <h2>Free Open House Details</h2>
-        <div style="text-align:center; background:white; padding:60px; border-radius:24px; box-shadow:0 15px 40px rgba(0,0,0,0.1); font-size:1.5rem;">
-            <p><strong>Date:</strong> Saturday, May 2, 2026</p>
-            <p><strong>Time:</strong> 9:00 AM – 6:00 PM</p>
-            <p><strong>Location:</strong> OxyHyperbaric<br>256 Ed English Dr, Bldg 4, Suite E<br>Shenandoah, TX 77385</p>
+    <main class="max-w-7xl mx-auto no-print">
+        <div class="flex justify-between items-center mb-8">
+            <button onclick="openNewClientModal()" class="titan-btn px-8 py-4 rounded-2xl text-[11px] uppercase tracking-widest shadow-xl">+ NUEVO PACIENTE</button>
+            <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="🔍 Buscar por nombre..." class="bg-white border-none rounded-2xl px-6 py-4 text-sm w-96 shadow-sm ring-1 ring-gray-100 focus:ring-2 focus:ring-blue-500">
         </div>
-    </section>
 
-    <section class="section" id="register">
-        <h2 style="text-align:center;">Reserve Your FREE Spot</h2>
-        <div class="form-container">
-            <form action="https://formsubmit.co/yarianc@yahoo.com" method="POST">
-                <input type="text" name="name" placeholder="Full Name" required>
-                <input type="tel" name="phone" placeholder="Phone / WhatsApp" required>
-                <input type="email" name="email" placeholder="Email Address" required>
-                <textarea name="message" rows="4" placeholder="Preferred time or any message (optional)"></textarea>
-                <button type="submit" class="btn" style="width:100%; margin-top:30px;">Yes, Save My Spot!</button>
-            </form>
-            <p style="text-align:center; margin-top:25px;">You will receive confirmation via WhatsApp <strong>713-591-3379</strong></p>
+        <div class="predicta-card overflow-hidden">
+            <table class="w-full text-left">
+                <thead class="bg-gray-50 text-[10px] font-black uppercase text-gray-400 tracking-widest border-b border-gray-100 italic">
+                    <tr>
+                        <th class="px-8 py-6">ID</th>
+                        <th class="px-8 py-6">PACIENTE</th>
+                        <th class="px-8 py-6 text-center">PERFIL CLÍNICO</th>
+                        <th class="px-8 py-6 text-center text-blue-600 font-black">PESO ACTUAL</th>
+                        <th class="px-8 py-6 text-right">ANÁLISIS</th>
+                    </tr>
+                </thead>
+                <tbody id="clientTableBody" class="divide-y divide-gray-50 italic font-medium"></tbody>
+            </table>
         </div>
-    </section>
+    </main>
 
+    <div id="modalNuevo" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-[120] no-print">
+        <div class="bg-white w-full max-w-2xl rounded-[40px] p-10 shadow-2xl relative">
+            <button onclick="closeNewClientModal()" class="absolute top-8 right-10 text-gray-300 hover:text-black text-2xl font-light">✕</button>
+            <h2 class="text-2xl font-black uppercase italic tracking-tighter mb-8 border-l-4 border-blue-600 pl-4">Alta de Paciente</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <input type="text" id="newID" class="input-titan" placeholder="ID Manual">
+                <input type="text" id="newName" class="input-titan" placeholder="Nombre Completo">
+                <input type="number" id="newAge" class="input-titan" placeholder="Edad">
+                <input type="number" id="newHeight" class="input-titan" placeholder="Altura">
+                <select id="newGender" class="input-titan font-bold"><option value="Masculino">Masculino</option><option value="Femenino">Femenino</option></select>
+                <input type="number" id="newWeight" class="input-titan" placeholder="Peso Inicial">
+                <input type="number" id="newFat" class="input-titan" placeholder="% Grasa Actual">
+            </div>
+            <p class="text-[9px] text-gray-400 mt-4 italic font-medium">* El programa calculará automáticamente la meta de grasa ideal basada en salud y edad.</p>
+            <button onclick="saveNewClient()" class="w-full titan-btn py-4 rounded-2xl mt-6 uppercase tracking-widest text-xs">Guardar y Calcular Meta</button>
+        </div>
+    </div>
+
+    <div id="modalDetalle">
+        <div class="modal-content p-12 shadow-2xl">
+            <div class="flex justify-between items-center mb-8 no-print border-b pb-6">
+                <button onclick="closeModal()" class="text-blue-600 font-black text-xs uppercase tracking-widest flex items-center gap-2 hover:opacity-70 transition-all">← REGRESAR AL LISTADO</button>
+                <div class="flex gap-4">
+                    <button onclick="window.print()" class="bg-blue-600 text-white px-8 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-blue-100">🖨️ GENERAR REPORTE CLÍNICO (PDF)</button>
+                    <button onclick="closeModal()" class="text-gray-300 hover:text-black text-4xl leading-none">✕</button>
+                </div>
+            </div>
+
+            <header class="flex justify-between items-start mb-10 border-b pb-10">
+                <div>
+                    <img src="logo.jpg" alt="Oxy Hyperbaric" class="h-16 mb-6 object-contain" onerror="this.src='https://via.placeholder.com/200x60?text=LOGO';">
+                    <h2 id="modalNombre" class="text-5xl font-black tracking-tighter italic uppercase text-gray-950 leading-none">PACIENTE</h2>
+                    <div class="flex gap-4 mt-4">
+                        <span id="modalInfo" class="px-4 py-1 bg-gray-100 text-[10px] font-bold rounded-full uppercase tracking-widest italic">--</span>
+                        <span id="prognosisBadge" class="px-4 py-1 bg-blue-600 text-white text-[10px] font-bold rounded-full uppercase italic tracking-widest">--</span>
+                    </div>
+                </div>
+                <div class="flex flex-col items-end gap-3 text-right">
+                    <div class="bg-blue-600 text-white px-10 py-6 rounded-[40px] shadow-xl shadow-blue-100">
+                        <p class="text-[10px] uppercase font-bold opacity-80 mb-1 italic">Peso Ideal Clínico</p>
+                        <p id="targetWeightDisplay" class="text-4xl font-black italic">--</p>
+                    </div>
+                    <p id="fatTargetText" class="text-[10px] font-black text-blue-600 uppercase tracking-widest italic">--</p>
+                </div>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-gray-50 p-8 rounded-[40px] border border-gray-100">
+                    <p class="text-[11px] font-black text-gray-400 uppercase mb-2">Motor Metabólico (Masa Magra)</p>
+                    <p id="muscleMass" class="text-4xl font-black text-slate-800">--</p>
+                    <p class="text-[10px] text-gray-400 mt-4 leading-relaxed font-medium">Este es tu motor de quema calórica. La terapia de oxígeno ayuda a preservarlo mientras reduces grasa.</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-[40px] border border-gray-100 text-center">
+                    <p class="text-[11px] font-black text-gray-400 uppercase mb-2">Estado de Grasa Visceral</p>
+                    <p id="visceralFat" class="text-4xl font-black text-slate-800">--</p>
+                    <p id="visceralStatus" class="text-[10px] font-bold mt-4 uppercase">--</p>
+                </div>
+                <div class="bg-gray-950 p-8 rounded-[40px] text-white text-center">
+                    <p class="text-[11px] font-black text-blue-400 uppercase mb-2 italic text-center">Gasto Basal BMR (kcal)</p>
+                    <p id="displayBMR" class="text-4xl font-black text-center text-white">--</p>
+                    <p class="text-[10px] text-gray-500 mt-4 leading-tight italic">Energía que tu cuerpo consume en reposo total.</p>
+                </div>
+            </div>
+
+            <div class="predicta-card p-10 border-2 border-gray-50 mb-12">
+                <h3 class="text-[11px] font-black uppercase text-gray-400 tracking-widest mb-8 italic">PROYECCIÓN DE ÉXITO: SESIONES ESTIMADAS HASTA LA META</h3>
+                <div class="h-[450px] w-full">
+                    <canvas id="progressChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-slate-50 p-10 rounded-[45px] no-print">
+                <h3 class="text-[11px] font-black uppercase mb-6 text-blue-600 tracking-widest italic text-center">CAPTURA DE SESIÓN DE CONTROL</h3>
+                <div class="flex flex-col md:flex-row gap-6 items-end">
+                    <div class="flex-1">
+                        <label id="sessWeightLabel" class="text-[10px] font-bold text-gray-400 uppercase block mb-2 ml-2 italic">Peso Hoy (KG)</label>
+                        <input type="number" id="sessWeight" class="input-titan shadow-sm" placeholder="0.0">
+                    </div>
+                    <div class="flex-1">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase block mb-2 ml-2 italic">% Grasa Wyze</label>
+                        <input type="number" id="sessFat" class="input-titan shadow-sm" placeholder="0.0">
+                    </div>
+                    <button onclick="addSession()" class="titan-btn px-12 py-4 rounded-2xl text-[11px] uppercase tracking-widest shadow-xl h-[58px]">REGISTRAR Y PROYECTAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyfTBe73GaXzem3p08rDd6N5ebXgBt2EROVx6HbrMrPATX2a8bbkoPiV1PhyifbjUU6/exec";
+    let unitMode = 'KG'; // 'KG' o 'LB'
+    let chartInstance = null;
+    let globalData = [];
+    let currentPatient = null;
+
+    async function fetchData() {
+        try {
+            const res = await fetch(`${WEB_APP_URL}?action=obtenerClientes`);
+            globalData = await res.json();
+            renderTable(globalData);
+        } catch (e) { console.error(e); }
+    }
+
+    // --- LÓGICA DE CONVERSIÓN ---
+    function convP(val) {
+        val = parseFloat(val);
+        if (isNaN(val)) return "--";
+        return unitMode === 'LB' ? (val * 2.20462).toFixed(1) : val.toFixed(1);
+    }
+    function convA(val) {
+        val = parseFloat(val);
+        if (isNaN(val)) return "--";
+        return unitMode === 'LB' ? (val / 2.54).toFixed(1) + " IN" : val.toFixed(0) + " CM";
+    }
+
+    // --- LÓGICA CIENTÍFICA DE GRASA IDEAL (Salud) ---
+    function getIdealFat(age, gender) {
+        let base = gender === 'Masculino' ? 14 : 22;
+        let adjustment = Math.floor((age - 20) / 10) * 1.5; // Sube 1.5% por cada década después de los 20
+        return Math.min(gender === 'Masculino' ? 22 : 32, base + adjustment); // Caps saludables
+    }
+
+    function renderTable(data) {
+        const tbody = document.getElementById('clientTableBody');
+        tbody.innerHTML = '';
+        data.forEach(p => {
+            const tr = document.createElement('tr');
+            tr.className = "hover:bg-blue-50 cursor-pointer transition-all border-b border-gray-100 group";
+            tr.onclick = (e) => { if(!e.target.closest('button')) selectPatient(p); };
+            tr.innerHTML = `
+                <td class="px-8 py-6 text-[10px] font-black text-gray-300 uppercase">${p.id}</td>
+                <td class="px-8 py-6 font-black text-gray-900 group-hover:text-blue-600 uppercase italic">${p.nombre}</td>
+                <td class="px-8 py-6 text-center text-[10px] text-gray-400 font-bold uppercase">${p.sexo} | ${p.edad} años | ${convA(p.altura)}</td>
+                <td class="px-8 py-6 text-center font-black text-blue-600 text-xl italic">${convP(p.peso)} ${unitMode}</td>
+                <td class="px-8 py-6 text-right text-blue-200">➔</td>`;
+            tbody.appendChild(tr);
+        });
+    }
+
+    function selectPatient(p) {
+        currentPatient = p;
+        document.getElementById('modalNombre').innerText = p.nombre;
+        const dateObj = new Date(p.fechaInicio);
+        const fechaStr = dateObj.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
+        document.getElementById('modalInfo').innerText = `${p.sexo} | ${p.edad} AÑOS | INICIO: ${fechaStr} | ESTATURA: ${convA(p.altura)}`;
+        
+        // CÁLCULOS CLÍNICOS DINÁMICOS
+        const pesoKG = parseFloat(p.peso);
+        const grasaActual = parseFloat(p.grasa) / 100;
+        const masaMagra = pesoKG * (1 - grasaActual);
+        
+        // Si no hay grasa objetivo en tabla, calcular científica
+        const grasaObjetivo = (p.grasaObjetivo && p.grasaObjetivo > 0) ? (p.grasaObjetivo/100) : (getIdealFat(p.edad, p.sexo)/100);
+        const targetWeightKG = masaMagra / (1 - grasaObjetivo);
+        const deficitKG = pesoKG - targetWeightKG;
+        
+        // PRONÓSTICO: -1lb (0.45kg) por sesión. 2 sesiones/semana.
+        const totalSesiones = Math.ceil(deficitKG / 0.45);
+        const semanasMeta = Math.ceil(totalSesiones / 2);
+
+        document.getElementById('targetWeightDisplay').innerText = `${convP(targetWeightKG)} ${unitMode}`;
+        document.getElementById('fatTargetText').innerText = `META: ${(grasaObjetivo * 100).toFixed(0)}% GRASA`;
+        document.getElementById('prognosisBadge').innerText = `${totalSesiones} SESIONES | ${semanasMeta} SEMANAS HASTA META`;
+        document.getElementById('muscleMass').innerText = `${convP(masaMagra)} ${unitMode}`;
+        document.getElementById('displayBMR').innerText = Math.round(370 + (21.6 * masaMagra));
+        
+        document.getElementById('visceralFat').innerText = p.grasaVisceral || "9";
+        const gvS = document.getElementById('visceralStatus');
+        gvS.innerText = (p.grasaVisceral || 9) < 10 ? "ÓPTIMO" : "RIESGO METABÓLICO";
+        gvS.className = (p.grasaVisceral || 9) < 10 ? "text-[10px] font-bold mt-4 uppercase text-green-500" : "text-[10px] font-bold mt-4 uppercase text-red-500";
+
+        // Actualizar labels de captura
+        document.getElementById('sessWeightLabel').innerText = `Peso Actual (${unitMode})`;
+
+        initChart(p, targetWeightKG);
+        document.getElementById('modalDetalle').style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function initChart(p, targetKG) {
+        const ctx = document.getElementById('progressChart').getContext('2d');
+        if(chartInstance) chartInstance.destroy();
+        
+        const pIni = parseFloat(p.peso);
+        const startPoint = parseFloat(convP(pIni));
+        const targetPoint = parseFloat(convP(targetKG));
+        
+        // Generar proyección hasta la meta real
+        const labels = [];
+        const metaData = [startPoint];
+        const step = unitMode === 'KG' ? 0.45 : 1.0; 
+        const totalSteps = Math.max(Math.ceil((pIni - targetKG) / 0.45), 10);
+
+        for(let i=1; i<=totalSteps; i++) {
+            let nextVal = metaData[i-1] - step;
+            metaData.push(nextVal > targetPoint ? nextVal.toFixed(1) : targetPoint.toFixed(1));
+        }
+
+        const realData = [startPoint];
+        if(p.avances) {
+            p.avances.sort((a,b) => new Date(a.fecha) - new Date(b.fecha));
+            p.avances.forEach(a => realData.push(parseFloat(convP(a.peso))));
+        }
+
+        // Crear etiquetas dinámicas: S1 (W1), S2 (W1), S3 (W2)...
+        const fullLabels = metaData.map((_, i) => `S${i+1} (W${Math.floor(i/2)+1})`);
+
+        chartInstance = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: fullLabels,
+                datasets: [
+                    { label: 'PROGRESO REAL', data: realData, borderColor: '#2563eb', tension: 0.3, borderWidth: 6, pointRadius: 6, backgroundColor: '#2563eb' },
+                    { label: 'META TEÓRICA', data: metaData, borderColor: '#e2e8f0', borderDash: [6,6], tension: 0, pointRadius: 0 }
+                ]
+            },
+            options: { 
+                responsive: true, maintainAspectRatio: false, 
+                plugins: { legend: { display: false } },
+                scales: { 
+                    y: { ticks: { font: { weight: 'bold', size: 10 } }, grid: { color: '#f8fafc' } },
+                    x: { ticks: { font: { size: 9 } }, grid: { display: false } }
+                }
+            }
+        });
+    }
+
+    function toggleUnits(e) {
+        e.preventDefault(); e.stopPropagation();
+        unitMode = unitMode === 'KG' ? 'LB' : 'KG';
+        document.getElementById('currentUnitText').innerText = unitMode === 'KG' ? 'MÉTRICO (KG/CM)' : 'INGLÉS (LB/IN)';
+        renderTable(globalData);
+        if(currentPatient) selectPatient(currentPatient);
+    }
+
+    async function saveNewClient() {
+        const pRaw = parseFloat(document.getElementById('newWeight').value);
+        const hRaw = parseFloat(document.getElementById('newHeight').value);
+        const edad = parseInt(document.getElementById('newAge').value);
+        const sexo = document.getElementById('newGender').value;
+
+        let pKG = unitMode === 'LB' ? pRaw / 2.20462 : pRaw;
+        let hCM = unitMode === 'LB' ? hRaw * 2.54 : hRaw;
+        
+        // Cálculo automático de Grasa Ideal si no se especifica
+        const grasaObjetivo = getIdealFat(edad, sexo);
+
+        const cliente = {
+            id: document.getElementById('newID').value,
+            nombre: document.getElementById('newName').value,
+            sexo, edad, altura: hCM.toFixed(0),
+            peso: pKG.toFixed(2),
+            grasa: document.getElementById('newFat').value,
+            grasaObjetivo: grasaObjetivo,
+            fechaInicio: new Date().toISOString()
+        };
+
+        await fetch(WEB_APP_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ action: "guardarCliente", cliente }) });
+        closeNewClientModal(); fetchData();
+    }
+
+    async function addSession() {
+        const pRaw = parseFloat(document.getElementById('sessWeight').value);
+        if(!pRaw || !currentPatient) return;
+        let pKG = unitMode === 'LB' ? pRaw / 2.20462 : pRaw;
+        const avance = { 
+            id: currentPatient.id, fecha: new Date().toISOString(), 
+            peso: pKG.toFixed(2), grasa: document.getElementById('sessFat').value || 0 
+        };
+        await fetch(WEB_APP_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ action: "agregarAvance", avance }) });
+        closeModal(); fetchData();
+    }
+
+    function closeModal() { document.getElementById('modalDetalle').style.display = 'none'; document.body.style.overflow = 'auto'; }
+    function openNewClientModal() { document.getElementById('modalNuevo').classList.remove('hidden'); }
+    function closeNewClientModal() { document.getElementById('modalNuevo').classList.add('hidden'); }
+    function filterTable() { 
+        const q = document.getElementById('searchInput').value.toLowerCase();
+        const rows = document.querySelectorAll('#clientTableBody tr');
+        rows.forEach(r => r.style.display = r.innerText.toLowerCase().includes(q) ? '' : 'none');
+    }
+    window.onload = fetchData;
+</script>
 </body>
 </html>
